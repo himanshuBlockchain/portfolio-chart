@@ -4,8 +4,8 @@ const Header = () => {
   return (
     <div className='header_wrapper'>
         <div className="content">
-            <div className="left">Logo</div>
-            <div className="right">Contact</div>
+            <div className="left">PORTFOLIO</div>
+            <div className="right">GIE</div>
         </div>
     </div>
   )

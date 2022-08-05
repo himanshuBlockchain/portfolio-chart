@@ -26,7 +26,7 @@ function App() {
   //
   //
   //
-
+  let [x,setx]=useState([]);
   useEffect(() => {
     // func()
     var func2 = async () => {
@@ -48,7 +48,7 @@ function App() {
         const response = await axios.get(url);
         console.log(response);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
     // getERC20PriceData();
@@ -60,17 +60,47 @@ function App() {
     // symbol = response.data.data.symbol
     var getERC20CoinInfo = async () => {
       let contractAddress = "0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a";
-      let url = `https://api.coingecko.com/api/v3/coins/polygon-pos/contract/${contractAddress}`;
+      let url = `https://api.coingecko.com/api/v3/simple/token_price/polygon-pos?contract_addresses=0x1bfd67037b42cf73acf2047067bd4f2c47d9bfd6%2C0xd6df932a45c0f255f85145f286ea0b292b21c90b%2C0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a%2C0x2791bca1f2de4661ed88a30c99a7a9449aa84174%2C0xc2132d05d31c914a87c6611c10748aeb04b58e8f%2C0x8f3cf7ad23cd3cadbd9735aff958023239c6a063%2C0x3cef98bb43d732e2f285ee605a8158cde967d219%2C0xdb7cb471dd0b49b29cab4a1c14d070f27216a0ab%2C0x8505b9d2254a7ae468c0e9dd10ccea3a837aef5c%2C0x2c89bbc92bd86f8075d1decc58c7f4e0107f286b&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true`;
       // let url = `https://api.coingecko.com/api/v3/coins/polygon-pos/contract/0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a`;
       try {
         const response = await axios.get(url);
-        console.log(response);
-        console.log(response);
+        // console.log(response);
+        console.log("ssss",response.data);
+        let fullData=[];
+
+
+
+        let myArray=response.data
+
+console.log("ssss0",tableData)
+let count=0
+for (const key in myArray) {
+          // // let 
+          // id: "sf7s7e7r",
+          // name: "USD Coin",
+          // symbol: "USDC",
+          // logo: usdc,
+          // price: "1.00",
+          // priceChange: "0.00",
+          // volume: "716.68",
+          // market: 'up'
+          // con
+          tableData[count]['price']=myArray[key]["usd"];
+          tableData[count]['priceChange']=myArray[key]["usd_24h_change"].toFixed(2);
+          tableData[count]['volume']=myArray[key]["usd_24h_vol"].toFixed(2);
+          console.log("ssss",`${key}: ${myArray[key]["usd"]}`);
+          count++;
+        }
+        console.log("ssss1",tableData)
+        setx(tableData)
+        
+        console.log("ssss1x",x)
+
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
-    // getERC20CoinInfo()
+    getERC20CoinInfo()
 
     // Returns : Coin Name, Logo,
     // Coingecko URL : /coins/{id}/contract/{contract_address}
@@ -119,7 +149,7 @@ function App() {
 
   // table body items
   // let subtotal = 0;
-  const tbodyItems = tableData?.map((d, i) => [
+  const tbodyItems = x?.map((d, i) => [
     [
       <TextCell key={d.id} text={i + 1} as="td" className="text-start" />,
       <TextCell key={d.name} text={d.name} image={d.logo} symbol={d.symbol} as="td" className="text-start name_cell" />,
@@ -130,7 +160,7 @@ function App() {
         as="td"
         className={`text-end ${d.market === 'down' ? 'down':'up'}`}
       />,
-      <TextCell key={d.volume} text={`$${d.volume}m`} as="td" className="text-end" />,
+      <TextCell key={d.volume} text={`$${d.volume}`} as="td" className="text-end" />,
       <ActionCell
         key="action"
         className="text-end action__button"
