@@ -1,0 +1,18 @@
+.header_wrapper {
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(218, 218, 218, 0.1);
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left {
+      color: #fff;
+      font-size: 20px;
+    }
+    .right {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

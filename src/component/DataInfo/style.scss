@@ -1,0 +1,27 @@
+.data_info_wrapper {
+  margin-top: 45px !important;
+  margin: 20px 0;
+  .container {
+    width: 1240px;
+    margin: auto;
+    padding: 0 30px;
+    .data_row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #142069;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 20px;
+      height: 30px;
+      .name {
+        margin-right: 10px;
+        span {
+          color: rgb(195, 197, 203);
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
